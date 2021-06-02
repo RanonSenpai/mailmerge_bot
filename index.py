@@ -6,12 +6,15 @@ import base64
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 import re
+import time
 
 # Variables
 CLIENT_SECRET_FILE = "Client/client_secret.json"
 API_NAME = "gmail"
 API_VERSION = "v1"
 SCOPE = ["https://mail.google.com/"]
+
+DELAY = 10 # in seconds, delay after each message
 
 
 def get_variable(variable_name, count):
@@ -79,5 +82,7 @@ for email in email_list_file:
 
     # Sending Email
     send_email(email, subject_formatted, body_formatted)
+
+    time.sleep(DELAY)
 
     count += 1
